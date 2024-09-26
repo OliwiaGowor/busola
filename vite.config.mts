@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import { defineConfig, transformWithEsbuild } from 'vite';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
 import svgr from 'vite-plugin-svgr';
@@ -68,5 +69,13 @@ export default defineConfig({
   },
   define: {
     'process.env.IS_DOCKER': JSON.stringify(process.env.IS_DOCKER),
+  },
+  test: {
+    setupFiles: './vitest-setup.ts',
+    environment: 'jsdom',
+    include: ['**/?(*.)+(test).[jt]s?(x)'],
+    coverage: {
+      reporter: ['text'],
+    },
   },
 });

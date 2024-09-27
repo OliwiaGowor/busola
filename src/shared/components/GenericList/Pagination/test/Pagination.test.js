@@ -11,13 +11,15 @@ describe('Pagination', () => {
           itemsTotal={25}
           itemsPerPage={20}
           currentPage={1}
-          onChangePage={jest.fn()}
-          setLocalPageSize={jest.fn()}
+          onChangePage={vi.fn()}
+          setLocalPageSize={vi.fn()}
         />
       </ThemeProvider>,
     );
 
-    expect(container.querySelector('ui5-input').value).toBe('1');
+    expect(container.querySelector('ui5-input').getAttribute('value')).toBe(
+      '1',
+    );
     expect(queryByText('2')).toBeInTheDocument();
     expect(queryByText('3')).not.toBeInTheDocument();
   });
@@ -29,8 +31,8 @@ describe('Pagination', () => {
           itemsTotal={90}
           currentPage={5}
           itemsPerPage={10}
-          onChangePage={jest.fn()}
-          setLocalPageSize={jest.fn()}
+          onChangePage={vi.fn()}
+          setLocalPageSize={vi.fn()}
         />
       </ThemeProvider>,
     );
@@ -39,7 +41,9 @@ describe('Pagination', () => {
     expect(queryByText('2')).not.toBeInTheDocument();
     expect(queryByText('3')).toBeInTheDocument();
     expect(queryByText('4')).toBeInTheDocument();
-    expect(container.querySelector('ui5-input').value).toBe('5');
+    expect(container.querySelector('ui5-input').getAttribute('value')).toBe(
+      '5',
+    );
     expect(queryByText('6')).toBeInTheDocument();
     expect(queryByText('7')).toBeInTheDocument();
     expect(queryByText('8')).not.toBeInTheDocument();
@@ -50,7 +54,7 @@ describe('Pagination', () => {
   });
 
   it('Fire events', async () => {
-    const callback = jest.fn();
+    const callback = vi.fn();
     const { getByText, getByLabelText } = render(
       <ThemeProvider>
         <Pagination
@@ -58,7 +62,7 @@ describe('Pagination', () => {
           currentPage={5}
           itemsPerPage={20}
           onChangePage={callback}
-          setLocalPageSize={jest.fn()}
+          setLocalPageSize={vi.fn()}
         />
       </ThemeProvider>,
     );
@@ -84,8 +88,8 @@ describe('Pagination', () => {
           itemsTotal={60}
           itemsPerPage={20}
           currentPage={1}
-          onChangePage={jest.fn()}
-          setLocalPageSize={jest.fn()}
+          onChangePage={vi.fn()}
+          setLocalPageSize={vi.fn()}
         />
       </ThemeProvider>,
     );
@@ -101,8 +105,8 @@ describe('Pagination', () => {
           itemsTotal={60}
           itemsPerPage={20}
           currentPage={3}
-          onChangePage={jest.fn()}
-          setLocalPageSize={jest.fn()}
+          onChangePage={vi.fn()}
+          setLocalPageSize={vi.fn()}
         />
       </ThemeProvider>,
     );
@@ -115,8 +119,8 @@ describe('Pagination', () => {
           itemsTotal={60}
           itemsPerPage={20}
           currentPage={2}
-          onChangePage={jest.fn()}
-          setLocalPageSize={jest.fn()}
+          onChangePage={vi.fn()}
+          setLocalPageSize={vi.fn()}
         />
       </ThemeProvider>,
     );

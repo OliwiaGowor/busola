@@ -62,7 +62,7 @@ const getConfigs = async (fetchFn: FetchFn | undefined) => {
     }
 
     // Check if there is config.yaml - case for deploying Busola in a Cluster
-    let configParams: Config;
+    let configParams: Config = {};
     try {
       configParams = jsyaml.load(await configResponse.text()) as Config;
     } catch (e) {
